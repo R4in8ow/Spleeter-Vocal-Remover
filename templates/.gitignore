@@ -1,0 +1,34 @@
+==================================
+
+1. Virtual Environments (Venv/Conda)
+
+==================================
+
+Ignore all venv folders which contain large libraries like TensorFlow
+
+venv/
+vocal_env_py38/
+pycache/
+
+==================================
+
+2. Application Generated Files
+
+==================================
+
+Spleeter Models (The 74MB file must be ignored)
+
+pretrained_models/
+
+Ignore user uploads and final output files
+
+uploads/
+output/
+
+==================================
+
+3. OS and Editor Files
+
+==================================
+
+.DS_Store

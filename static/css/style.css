@@ -1,0 +1,266 @@
+/*
+ * Team Amigos AI Splitter - Liquid Glass Design Styles
+ * This file implements a Glassmorphism design with a dynamic background.
+ *
+ * NOTE: Ensure 'static/images/team_amigos_logo.png' exists.
+ */
+
+/* ====================================
+ * 1. Global & Background Styles
+ * ==================================== */
+body {
+    font-family: 'Inter', sans-serif;
+    /* Dark Blue Gradient Background */
+    background: linear-gradient(135deg, #1f2e45 0%, #0d1a26 100%); 
+    color: #e0e0e0; /* Light text */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    overflow: hidden; 
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Background Animated Shapes for Liquid Glass Effect */
+body::before, body::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px); /* Heavy blur for liquid look */
+    z-index: 1;
+}
+
+body::before {
+    top: -100px;
+    left: -100px;
+    width: 400px;
+    height: 400px;
+    background: rgba(147, 112, 219, 0.6); /* Medium Purple */
+    animation: move1 20s infinite alternate;
+}
+
+body::after {
+    bottom: -150px;
+    right: -150px;
+    width: 500px;
+    height: 500px;
+    background: rgba(76, 175, 80, 0.6); /* Green */
+    animation: move2 25s infinite alternate;
+}
+
+@keyframes move1 {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(100px, 100px); }
+    100% { transform: translate(0, 0); }
+}
+
+@keyframes move2 {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(-150px, -150px) rotate(360deg); }
+}
+
+
+/* ====================================
+ * 2. Main Container (Liquid Glass Effect)
+ * ==================================== */
+.container {
+    /* Glassmorphism Core Styles */
+    background: rgba(255, 255, 255, 0.1); /* Very light background for transparency */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Frosted border */
+    backdrop-filter: blur(15px); /* Crucial blur effect */
+    -webkit-backdrop-filter: blur(15px);
+    
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); /* Deep shadow */
+    z-index: 10;
+    max-width: 450px;
+    text-align: center;
+    animation: fadeIn 0.8s ease-out;
+}
+
+h1 {
+    font-size: 1.6rem;
+    color: #ffffff; 
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Soft white glow */
+}
+
+h1 i {
+    margin-right: 10px;
+    color: #4CAF50; 
+    font-size: 1.5em;
+}
+
+/* ====================================
+ * 3. File Input Customization
+ * ==================================== */
+.file-input-container {
+    margin: 30px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+/* Hide the default HTML file input (Crucial for custom design) */
+.file-input-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Custom File Upload Button */
+.custom-file-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.1); /* Transparent button */
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: 600;
+    width: 80%; /* Width adjustment for better display */
+    cursor: pointer;
+}
+
+.custom-file-label:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #4CAF50;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+.file-icon {
+    font-size: 1.2em;
+    margin-right: 10px;
+}
+
+.file-name {
+    flex-grow: 1;
+    text-align: left;
+    color: #90ee90; /* Light green for file name */
+    font-style: italic;
+    font-size: 0.95em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ====================================
+ * 4. Button & Loading Spinner
+ * ==================================== */
+
+/* Custom Button Style (Start Separation) */
+button[type="submit"] {
+    background-color: #4CAF50; /* Primary button color */
+    color: white;
+    border: none;
+    padding: 12px 40px;
+    font-size: 1.05em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+    margin-top: 15px;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.6);
+}
+
+/* Loading Overlay */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+/* Loading Spinner */
+.spinner {
+    border: 8px solid rgba(76, 175, 80, 0.2);
+    border-top: 8px solid #4CAF50;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Loading Text */
+.loading-text {
+    color: #4CAF50;
+    font-size: 1.2em;
+}
+
+/* ====================================
+ * 5. Watermark Footer (Logo Only)
+ * ==================================== */
+
+.watermark-footer {
+    position: fixed;
+    bottom: 10px;
+    right: 15px;
+    z-index: 5;
+    font-size: 0.9em;
+    color: #4CAF50;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.watermark-footer:hover {
+    opacity: 1;
+}
+
+.watermark-footer::before {
+    content: '';
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+    background-image: url('../images/team_amigos_logo.png'); /* Final attempt to use PNG */
+    background-size: contain;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+}
+
+/* ====================================
+ * 6. Animations
+ * ==================================== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

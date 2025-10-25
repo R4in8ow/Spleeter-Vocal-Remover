@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result - AI Vocal Remover</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    
+    <div class="container">
+        <h1>✅ Separation Completed!</h1>
+        <p>Original File: <strong>{{ folder_name }}</strong></p>
+        
+        <p>Download the separated audio stems (MP3):</p>
+        
+        <ul>
+            {% for stem in stems %}
+            <li style="margin-bottom: 15px; font-size: 1.1em; text-align: left;">
+                🎵 {{ stem.split('.')[0]|capitalize }} - 
+                <a href="{{ url_for('download_file', folder_name=folder_name, filename=stem) }}" 
+                   class="download-link">
+                    [📥 Download]
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+        
+        <p style="margin-top: 30px;"><a href="{{ url_for('index') }}" class="back-link">Process another file</a></p>
+    </div>
+
+    <div class="watermark-footer">
+        Team Amigos
+    </div>
+
+</body>
+</html>

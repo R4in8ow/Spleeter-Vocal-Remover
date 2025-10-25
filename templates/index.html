@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Vocal Remover | Team Amigos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    
+    <div class="container">
+        <h1>🎧 Team Amigos AI Splitter</h1>
+        <p>Import the song file and separate the Vocal, Instrumental (MP3).</p>
+        
+        <form method="POST" enctype="multipart/form-data" action="/" id="uploadForm">
+            <div class="file-input-container">
+                <input type="file" name="audio_file" accept=".mp3, .wav, .flac" required id="audioFile" class="file-input-hidden">
+                
+                <label for="audioFile" class="custom-file-label">
+                    <span class="file-icon">📁</span>
+                    <span id="fileNameDisplay" class="file-name">No file chosen</span>
+                </label>
+            </div>
+            
+            <button type="submit" id="submitButton" class="mt-8">🎼 START SEPARATION</button>
+        </form>
+    </div>
+
+    <div class="watermark-footer">
+        Team Amigos
+    </div>
+
+    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+        <div class="spinner"></div>
+        <p class="loading-text">Processing... Please wait.</p>
+        <small>Depending on the file size and processing power, this may take some time.</small>
+    </div>
+
+    <script>
+        // File input တွင် ဖိုင်နာမည်ကို ပြသရန်
+        document.getElementById('audioFile').addEventListener('change', function(e) {
+            const fileName = e.target.files[0] ? e.target.files[0].name : 'No file chosen';
+            document.getElementById('fileNameDisplay').textContent = fileName;
+        });
+
+        // Form submit လုပ်တဲ့အခါ Loading Screen ကို ပြသဖို့
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            // Display loading overlay and hide button
+            document.getElementById('loadingOverlay').style.display = 'flex';
+            document.getElementById('submitButton').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

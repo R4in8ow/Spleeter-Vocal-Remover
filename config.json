@@ -1,0 +1,10 @@
+{
+  "sampling_rate": 44100,
+  "separation": {
+    "output_path": "output",
+    "params": {
+      "stems": 2
+    },
+    "output_format": "mp3"  // <<--- MP3 Format သတ်မှတ်ထားသည်
+  }
+}
